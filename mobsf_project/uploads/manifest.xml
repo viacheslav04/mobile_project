@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest android:versionCode="110123000" android:versionName="1.1.01.23" android:compileSdkVersion="35" android:compileSdkVersionCodename="15" package="com.samsung.android.themedesigner" platformBuildVersionCode="35" platformBuildVersionName="15"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-sdk android:minSdkVersion="34" android:targetSdkVersion="35" />
+    <permission android:name="com.samsung.android.themedesigner.permission.READ" android:protectionLevel="signature" />
+    <uses-permission android:name="android.permission.REMOVE_TASKS" />
+    <uses-permission android:name="android.permission.REAL_GET_TASKS" />
+    <uses-permission android:name="com.samsung.android.permission.MODIFY_THEME" />
+    <uses-permission android:name="com.sec.spp.permission.TOKEN_b83b7eed0e4004902a519d74aa7030d7a38b97d58187f27185ced4602f013f22d23b065dd64785693edc7182d9aec55662bae62c3f06b5877a25c9c6632133b25652280cbdc9f85e8d573703b21ffb89d8a485478ef8c9996d176c591dc5ad8931c04389d8f1b4d19482a0332be593c0b8e6b67f9180617fc6f7a384db50d980" />
+    <uses-permission android:name="com.sec.android.diagmonagent.permission.DIAGMON" />
+    <uses-permission android:name="com.samsung.systemui.permission.KEYGUARD_IMAGE" />
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <uses-permission android:name="com.samsung.android.stickercenter.permission.sticker.READ" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.samsung.android.stickercenter.service.ACCESS" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.GET_INTENT_SENDER_INTENT" />
+    <uses-permission android:name="android.permission.READ_WALLPAPER_INTERNAL" />
+    <uses-permission android:name="com.wssnps.permission.COM_WSSNPS" />
+    <queries>
+        <provider android:authorities="com.samsung.android.themedesigner.ThemeProvider" />
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="com.samsung.android.gts.category.CREATE" />
+            <data android:scheme="package" />
+        </intent>
+    </queries>
+    <permission android:name="com.samsung.android.themedesigner.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" android:protectionLevel="signature" />
+    <uses-permission android:name="com.samsung.android.themedesigner.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <application android:theme="@style/OneUITheme" android:label="@string/app_name" android:icon="@drawable/themepark_adaptive_appicon" android:name="com.samsung.android.themedesigner.ThemeDesignerApplication" android:allowBackup="false" android:supportsRtl="true" android:extractNativeLibs="false" android:networkSecurityConfig="@xml/network_security_config" android:appComponentFactory="androidx.core.app.CoreComponentFactory">
+        <activity android:name="com.samsung.android.themedesigner.ui.view.AboutComposeActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="com.samsung.android.themedesigner.action.ABOUT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <receiver android:name="com.samsung.android.themedesigner.MyReceiver" android:enabled="true" android:exported="true">
+            <intent-filter>
+                <action android:name="com.samsung.android.themedesigner.pending_intent" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.samsung.intent.action.LAZY_BOOT_COMPLETE" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.samsung.android.themedesigner.BackupRestore" android:permission="com.wssnps.permission.COM_WSSNPS" android:enabled="true" android:exported="true">
+            <intent-filter>
+                <action android:name="com.samsung.android.intent.action.REQUEST_BACKUP_THEME_PARK" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.samsung.android.intent.action.REQUEST_RESTORE_THEME_PARK" />
+            </intent-filter>
+        </receiver>
+        <provider android:name="com.samsung.android.themedesigner.ThemeProvider" android:permission="com.samsung.android.permission.MODIFY_THEME" android:enabled="true" android:exported="true" android:authorities="com.samsung.android.themedesigner.ThemeProvider" />
+        <activity android:name="com.samsung.android.imagepicker.sticker.ui.view.StickerSettingComposeActivity" android:screenOrientation="behind" />
+        <activity android:name="com.samsung.android.themedesigner.DeepLinkActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="themepark" />
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/my_wallpaper" android:icon="@drawable/ic_wallpaper_picker" android:name="com.samsung.android.imagepicker.wallpaper.ui.view.MyWallpaperComposeActivity" android:permission="com.samsung.android.themedesigner.permission.READ" android:exported="true" android:screenOrientation="behind">
+            <intent-filter>
+                <action android:name="com.samsung.android.themedesigner.choose_wallpaper" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/sticker" android:icon="@drawable/ic_sticker_picker" android:name="com.samsung.android.imagepicker.sticker.ui.view.MyStickerComposeActivity" android:permission="com.samsung.android.themedesigner.permission.READ" android:exported="true" android:screenOrientation="behind">
+            <intent-filter>
+                <action android:name="com.samsung.android.themedesigner.choose_sticker" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.samsung.android.themedesigner.ui.view.IconPackCreateComposeActivity" android:screenOrientation="behind" />
+        <activity android:name="com.samsung.android.themedesigner.ui.view.ChangeIconComposeActivity" android:screenOrientation="behind" />
+        <activity android:name="com.samsung.android.themedesigner.ui.view.IconPackSelectComposeActivity" android:screenOrientation="behind" />
+        <activity android:name="com.samsung.android.themedesigner.ui.view.IconPackImageComposeActivity" android:screenOrientation="behind" />
+        <activity android:name="com.samsung.android.themedesigner.ui.view.IconEditComposeActivity" android:screenOrientation="behind" />
+        <activity android:name="com.samsung.android.themedesigner.ui.view.MainThemeCustomComposeActivity" android:screenOrientation="behind" />
+        <activity android:name="com.samsung.android.themedesigner.ui.view.WallpaperSelectComposeActivity" android:screenOrientation="behind" />
+        <activity android:theme="@style/Translucent" android:name="com.samsung.android.themedesigner.ui.view.PresetComposeActivity" android:exported="true" android:screenOrientation="behind" android:configChanges="fontScale|keyboardHidden|orientation|screenLayout|screenSize|uiMode">
+            <intent-filter>
+                <action android:name="com.samsung.android.themedesigner.keyscafe" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.samsung.android.themedesigner.quickstar" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.samsung.android.themedesigner.volumepanel" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <service android:name="com.samsung.android.themedesigner.DeleteThemeService" android:enabled="true" android:exported="false" />
+        <service android:name="com.samsung.android.themedesigner.gts.GTSService" android:enabled="true" android:exported="false" />
+        <activity android:name="com.samsung.android.themedesigner.ui.view.SplashComposeActivity" android:exported="true" android:screenOrientation="behind">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.samsung.android.gts.action.GTS_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.sec.android.app.launcher.icon_theme" android:value="onlyBg" />
+        </activity>
+        <activity android:name="com.samsung.android.themedesigner.ui.view.ContentListComposeActivity" android:launchMode="singleTask" android:screenOrientation="behind" />
+        <activity android:name="com.samsung.android.themedesigner.ui.view.CustomizeComposeActivity" android:exported="true" android:screenOrientation="behind" android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="com.samsung.android.themedesigner.CustomizeActivity.new.honeyboard" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.samsung.android.themedesigner.CustomizeActivity.new" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:theme="@style/Translucent" android:label="@string/current_wallpaper" android:icon="@drawable/icon_current_wallpaper" android:name="com.samsung.android.themedesigner.WallpaperActivity" android:screenOrientation="behind" />
+        <activity android:name="com.samsung.android.themedesigner.ui.view.TextViewComposeActivity" android:screenOrientation="behind" />
+        <activity android:name="com.samsung.android.themedesigner.ui.view.MainThemeComposeActivity" android:exported="true" android:launchMode="singleTask" android:screenOrientation="behind" android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.samsung.android.themedesigner.ui.view.PermissionActivity" android:exported="true" android:screenOrientation="behind" />
+        <provider android:name="com.samsung.android.themedesigner.gts.GTSProvider" android:permission="android.permission.WRITE_SECURE_SETTINGS" android:exported="true" android:authorities="com.samsung.android.themedesigner.gts">
+            <intent-filter>
+                <action android:name="com.samsung.android.gts.action.GTS_CELL" />
+                <category android:name="com.samsung.android.gts.category.DEFAULT" />
+                <category android:name="com.samsung.android.gts.category.RESETTABLE" />
+                <category android:name="com.samsung.android.keyscafe.category.KEYS_CAFE" />
+                <category android:name="com.samsung.android.soundassistant.category.SOUND_ASSISTANT" />
+                <category android:name="com.samsung.android.qstuner.category.QUICK_STAR" />
+            </intent-filter>
+            <meta-data android:name="com.samsung.android.gts.ITEM_MAX_VERSION" android:value="@integer/gts_version" />
+        </provider>
+        <provider android:name="com.samsung.android.themedesigner.GenericFileProvider" android:enabled="true" android:exported="false" android:authorities="com.samsung.android.themedesigner.provider" android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/provider_paths" />
+        </provider>
+        <provider android:name="com.sec.android.diagmonagent.log.provider.DiagMonProvider" android:permission="com.sec.android.diagmonagent.permission.PROVIDER" android:exported="true" android:authorities="com.sec.android.log.4K6-399-575597" />
+        <meta-data android:name="SamsungBasicInteraction" android:value="SEP10" />
+        <meta-data android:name="com.samsung.android.multiuser.install_only_owner" android:value="true" />
+        <meta-data android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule" android:value="GlideModule" />
+        <provider android:name="androidx.startup.InitializationProvider" android:exported="false" android:authorities="com.samsung.android.themedesigner.androidx-startup">
+            <meta-data android:name="androidx.work.WorkManagerInitializer" android:value="androidx.startup" />
+            <meta-data android:name="androidx.emoji2.text.EmojiCompatInitializer" android:value="androidx.startup" />
+            <meta-data android:name="androidx.lifecycle.ProcessLifecycleInitializer" android:value="androidx.startup" />
+            <meta-data android:name="androidx.profileinstaller.ProfileInstallerInitializer" android:value="androidx.startup" />
+        </provider>
+        <service android:name="androidx.work.impl.background.systemalarm.SystemAlarmService" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false" android:directBootAware="false" />
+        <service android:name="androidx.work.impl.background.systemjob.SystemJobService" android:permission="android.permission.BIND_JOB_SERVICE" android:enabled="@bool/enable_system_job_service_default" android:exported="true" android:directBootAware="false" />
+        <service android:name="androidx.work.impl.foreground.SystemForegroundService" android:enabled="@bool/enable_system_foreground_service_default" android:exported="false" android:directBootAware="false" />
+        <receiver android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver" android:enabled="true" android:exported="false" android:directBootAware="false" />
+        <receiver android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy" android:enabled="false" android:exported="false" android:directBootAware="false">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy" android:enabled="false" android:exported="false" android:directBootAware="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_OKAY" />
+                <action android:name="android.intent.action.BATTERY_LOW" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy" android:enabled="false" android:exported="false" android:directBootAware="false">
+            <intent-filter>
+                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
+                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy" android:enabled="false" android:exported="false" android:directBootAware="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver" android:enabled="false" android:exported="false" android:directBootAware="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false" android:directBootAware="false">
+            <intent-filter>
+                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver" android:permission="android.permission.DUMP" android:enabled="true" android:exported="true" android:directBootAware="false">
+            <intent-filter>
+                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
+            </intent-filter>
+        </receiver>
+        <activity android:name="androidx.compose.ui.tooling.PreviewActivity" android:exported="true" />
+        <service android:name="androidx.room.MultiInstanceInvalidationService" android:exported="false" android:directBootAware="true" />
+        <receiver android:name="androidx.profileinstaller.ProfileInstallReceiver" android:permission="android.permission.DUMP" android:enabled="true" android:exported="true" android:directBootAware="false">
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+            </intent-filter>
+        </receiver>
+        <meta-data android:name="com.samsung.android.gtscell.VERSION" android:value="@integer/gts_cell_version" />
+        <meta-data android:name="SPDE.build.signature" android:value="unknown/unofficial/release/none" />
+        <meta-data android:name="SPDE.env.version" android:value="8.4.2/G35.1.16/1.1.19" />
+    </application>
+</manifest>
